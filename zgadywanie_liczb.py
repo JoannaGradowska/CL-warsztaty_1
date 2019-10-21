@@ -1,14 +1,21 @@
 from random import randint
-x = randint(1, 100)
+
+searched = randint(1, 100)
+number_of_guesses = 0
 while True:
     try:
-        y = int((input("Zgadnij liczbę: ")))
-        if x > y:
-            print("Za mało!")
-        elif x < y:
-            print("Za dużo!")
+        guess = (input("Guess the number: "))
+        guess = int(guess)
+        if 0 < guess <= 100:
+            number_of_guesses += 1
+            if searched > guess:
+                print("Too low!")
+            elif searched < guess:
+                print("Too high!")
+            else:
+                print(f"You won! It took you {number_of_guesses} guesses!")
+                break
         else:
-            print("Zgadłeś")
-            break
+            print("Pick a number between 1 and 100")
     except ValueError:
-        print("To nie jest liczba naturalna")
+        print(f"{guess} is not a natural number!")
